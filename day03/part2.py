@@ -2,7 +2,27 @@ import sys
 from dataclasses import dataclass
 from typing import Generator, Protocol
 
-from part1 import CannotParse, parse_char, parse_number, read_input
+def read_input(file_name: str) -> str:
+    with open(file_name) as input_file:
+        return input_file.read().replace("\n", "")
+
+class CannotParse(Exception):
+    pass
+
+def parse_char(x: str, ch: str) -> str:
+    if x[0] != ch:
+        raise CannotParse()
+
+    return x[1:]
+
+def parse_number(x: str) -> tuple[str, int]:
+    digits = ""
+    while len(x) > 0 and x[0].isdigit():
+        digits += x[0]
+        x = x[1:]
+    if digits == "":
+        raise CannotParse()
+    return x, int(digits)
 
 @dataclass
 class State:

@@ -1,5 +1,22 @@
 import sys
-from part1 import read_input, get_sign
+
+
+def read_input(file_name: str) -> list[list[int]]:
+    reports = []
+    with open(file_name) as input_file:
+        for line in input_file:
+            report = [int(x) for x in line.split()]
+            reports.append(report)
+    return reports
+
+
+def get_sign(n: int) -> int:
+    if n > 0:
+        return 1
+    elif n < 0:
+        return -1
+    else:
+        return 0
 
 
 def is_safe(report: list[int]) -> bool:

@@ -1,5 +1,14 @@
 import sys
-from part1 import read_input
+
+
+def read_input(file_name: str) -> tuple[list, list]:
+    l1, l2 = [], []
+    with open(file_name) as input_file:
+        for line in input_file:
+            [x, y] = line.split("   ")
+            l1.append(int(x))
+            l2.append(int(y))
+    return l1, l2
 
 
 def solve(l1: list, l2: list) -> int:
